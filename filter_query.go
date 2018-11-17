@@ -48,7 +48,7 @@ func (c *Condition) UnmarshalJSON(data []byte) error {
 		tmpCnd.Op == ">" ||
 		tmpCnd.Op == ">=" {
 
-		err := json.Unmarshal(tmpCnd.Val, &(c.Val)) // TODO parenthesis needed?
+		err := json.Unmarshal(tmpCnd.Val, &(c.Val))
 		if err != nil {
 			return err
 		}
