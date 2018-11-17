@@ -177,8 +177,6 @@ func TestParseURL(t *testing.T) {
 		url, err := ParseRawURL(reg, u.String())
 		tchek.ErrorExpected(t, n, test.expectedError, err)
 
-		// test.expectedURL.Path = tchek.MakeOneLineNoSpaces(test.expectedURL.Path)
-
 		if !test.expectedError {
 			url.Params = nil
 			tchek.AreEqual(
@@ -379,10 +377,6 @@ func TestParseParams(t *testing.T) {
 		}
 
 		if !test.expectedError {
-			// data, _ := json.MarshalIndent(test.expectedParams, "", "\t")
-			// fmt.Printf("EXPECTED:\n%s\n", data)
-			// data, _ = json.MarshalIndent(params, "", "\t")
-			// fmt.Printf("PROVIDED:\n%s\n", data)
 			tchek.AreEqual(
 				t, n,
 				test.expectedParams,
