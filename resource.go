@@ -18,12 +18,12 @@ type Resource interface {
 	Set(key string, val interface{})
 
 	// Read relationship
-	GetToOne(key string) string
-	GetToMany(key string) []string
+	GetToOneRel(key string) string
+	GetToManyRel(key string) []string
 
 	// Update relationship
-	SetToOne(key string, rel string)
-	SetToMany(key string, rels []string)
+	SetToOneRel(key string, rel string)
+	SetToManyRel(key string, rels []string)
 
 	// Validate
 	Validate() []error

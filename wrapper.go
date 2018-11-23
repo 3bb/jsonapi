@@ -151,8 +151,8 @@ func (w *Wrapper) Set(key string, val interface{}) {
 	w.setAttr(key, val)
 }
 
-// GetToOne ...
-func (w *Wrapper) GetToOne(key string) string {
+// GetToOneRel ...
+func (w *Wrapper) GetToOneRel(key string) string {
 	for i := 0; i < w.val.NumField(); i++ {
 		field := w.val.Field(i)
 		sf := w.val.Type().Field(i)
@@ -177,8 +177,8 @@ func (w *Wrapper) GetToOne(key string) string {
 	panic(fmt.Sprintf("jsonapi: relationship %s does not exist", key))
 }
 
-// GetToMany ...
-func (w *Wrapper) GetToMany(key string) []string {
+// GetToManyRel ...
+func (w *Wrapper) GetToManyRel(key string) []string {
 	for i := 0; i < w.val.NumField(); i++ {
 		field := w.val.Field(i)
 		sf := w.val.Type().Field(i)
@@ -203,8 +203,8 @@ func (w *Wrapper) GetToMany(key string) []string {
 	panic(fmt.Sprintf("jsonapi: relationship %s does not exist", key))
 }
 
-// SetToOne ...
-func (w *Wrapper) SetToOne(key string, rel string) {
+// SetToOneRel ...
+func (w *Wrapper) SetToOneRel(key string, rel string) {
 	for i := 0; i < w.val.NumField(); i++ {
 		field := w.val.Field(i)
 		sf := w.val.Type().Field(i)
@@ -230,8 +230,8 @@ func (w *Wrapper) SetToOne(key string, rel string) {
 	panic(fmt.Sprintf("jsonapi: relationship %s does not exist", key))
 }
 
-// SetToMany ...
-func (w *Wrapper) SetToMany(key string, rels []string) {
+// SetToManyRel ...
+func (w *Wrapper) SetToManyRel(key string, rels []string) {
 	for i := 0; i < w.val.NumField(); i++ {
 		field := w.val.Field(i)
 		sf := w.val.Type().Field(i)
@@ -274,9 +274,9 @@ func (w *Wrapper) Copy() Resource {
 	// Relationships
 	for _, rel := range w.Rels() {
 		if rel.ToOne {
-			nw.SetToOne(rel.Name, w.GetToOne(rel.Name))
+			nw.SetToOneRel(rel.Name, w.GetToOneRel(rel.Name))
 		} else {
-			nw.SetToMany(rel.Name, w.GetToMany(rel.Name))
+			nw.SetToManyRel(rel.Name, w.GetToManyRel(rel.Name))
 		}
 	}
 

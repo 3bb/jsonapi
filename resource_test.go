@@ -21,7 +21,7 @@ func TestResource(t *testing.T) {
 
 	// Get
 	tchek.AreEqual(t, 0, p1.Title, res.Get("title"))
-	tchek.AreEqual(t, 1, "some-artist", res.GetToOne("author"))
+	tchek.AreEqual(t, 1, "some-artist", res.GetToOneRel("author"))
 
 	// Set
 	res.Set("title", "New Title")
@@ -31,9 +31,9 @@ func TestResource(t *testing.T) {
 	p1.PaintedIn = time.Date(1932, 0, 0, 0, 0, 0, 0, loc)
 	tchek.AreEqual(t, 4, p1.PaintedIn, res.Get("painted-in"))
 
-	res.SetToOne("author", "another-artist")
+	res.SetToOneRel("author", "another-artist")
 	tchek.AreEqual(t, 5, "another-artist", p1.Author)
-	tchek.AreEqual(t, 6, "another-artist", res.GetToOne("author"))
+	tchek.AreEqual(t, 6, "another-artist", res.GetToOneRel("author"))
 }
 
 type painting struct {

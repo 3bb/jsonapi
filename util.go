@@ -50,10 +50,10 @@ func marshalResource(r Resource, prepath string, fields []string, relData map[st
 
 				for n := range relData {
 					if n == rel.Name {
-						id := r.GetToOne(rel.Name)
+						id := r.GetToOneRel(rel.Name)
 						if id != "" {
 							s["data"] = map[string]string{
-								"id":   r.GetToOne(rel.Name),
+								"id":   r.GetToOneRel(rel.Name),
 								"type": rel.Type,
 							}
 						} else {
@@ -78,7 +78,7 @@ func marshalResource(r Resource, prepath string, fields []string, relData map[st
 					if n == rel.Name {
 						data := []map[string]string{}
 
-						for _, id := range r.GetToMany(rel.Name) {
+						for _, id := range r.GetToManyRel(rel.Name) {
 							data = append(data, map[string]string{
 								"id":   id,
 								"type": rel.Type,
